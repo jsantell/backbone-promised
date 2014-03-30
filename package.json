@@ -1,0 +1,47 @@
+{
+  "name": "backbone-promised",
+  "description": "Wraps up Backbone's XHR methods into a consistent promisable API",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "dependencies": {
+    "underscore": "~1"
+  },
+  "devDependencies": {
+    "when": "*",
+    "expect.js": "*",
+    "mocha": ">= 1.3.2",
+    "backbone": "*",
+    "ghosttrain": "*",
+    "ghosttrain-backbone": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jsantell/backbone-promised"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --ui bdd"
+  },
+  "keywords": [
+    "backbone",
+    "promise",
+    "xhr"
+  ],
+  "author": {
+    "name": "Jordan Santell",
+    "url": "http://github.com/jsantell"
+  },
+  "license": "MIT",
+  "testling": {
+    "browsers": {
+      "ie": [8, 9, 10],
+      "firefox": [25, "nightly"],
+      "chrome": [30, "canary"],
+      "opera": [12, "next"],
+      "safari": [5.1, 6]
+    },
+    "harness": "mocha",
+    "files": [
+      "test/test.*.js"
+    ]
+  }
+}
