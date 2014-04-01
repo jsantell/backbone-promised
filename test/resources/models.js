@@ -9,27 +9,27 @@ function createModels () {
   var gt = new GhostTrain();
   initRoutes(gt);
 
-  var User = Backbone.Model.extend(BackbonePromised(Backbone.Model.prototype, when.promise)).extend({
-    urlRoot: '/users',
-    sync: GhostTrainBackbone(gt)
-  });
+  var User = Backbone.Model.extend(BackbonePromised(Backbone.Model.prototype, when.promise))
+    .extend(GhostTrainBackbone(gt)).extend({
+     urlRoot: '/users'
+    });
 
-  var Users = Backbone.Collection.extend(BackbonePromised(Backbone.Collection.prototype, when.promise)).extend({
-    url: '/users',
-    sync: GhostTrainBackbone(gt),
-    model: User
-  });
+  var Users = Backbone.Collection.extend(BackbonePromised(Backbone.Collection.prototype, when.promise))
+    .extend(GhostTrainBackbone(gt)).extend({
+      url: '/users',
+      model: User
+    });
 
-  var FailCollection = Backbone.Collection.extend(BackbonePromised(Backbone.Collection.prototype, when.promise)).extend({
-    url: '/fail',
-    sync: GhostTrainBackbone(gt),
-    model: User
-  });
+  var FailCollection = Backbone.Collection.extend(BackbonePromised(Backbone.Collection.prototype, when.promise))
+    .extend(GhostTrainBackbone(gt)).extend({
+      url: '/fail',
+      model: User
+    });
   
-  var FailUser = Backbone.Model.extend(BackbonePromised(Backbone.Model.prototype, when.promise)).extend({
-    url: '/fail',
-    sync: GhostTrainBackbone(gt)
-  });
+  var FailUser = Backbone.Model.extend(BackbonePromised(Backbone.Model.prototype, when.promise))
+    .extend(GhostTrainBackbone(gt)).extend({
+      url: '/fail',
+    });
 
 
   return {
