@@ -7,7 +7,7 @@
     "underscore": "~1"
   },
   "devDependencies": {
-    "when": "*",
+    "promise": "*",
     "expect.js": "*",
     "mocha": ">= 1.3.2",
     "backbone": "*",
