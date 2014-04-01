@@ -5,6 +5,9 @@ var initRoutes = require("./router");
 var BackbonePromised = require("../..");
 var when = require("when");
 
+// Include GT Legacy for older browser tests
+require("ghosttrain/legacy");
+
 function createModels () {
   var gt = new GhostTrain();
   initRoutes(gt);
