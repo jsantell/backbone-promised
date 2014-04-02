@@ -6,8 +6,14 @@ var GhostTrain = require("ghosttrain");
 var GhostTrainBackbone = require("ghosttrain-backbone");
 var initRoutes = require("./router");
 var BackbonePromised = require("../..");
-var Promise = require("promise");
-var promise = function (resolver) { return new Promise(resolver); };
+var Promise = require("promisesaplus");
+
+function promise (cb) {
+  var resolver = {};
+  var p = Promise(resolver);
+  cb(resolver.fulfill, resolver.reject);
+  return p;
+}
 
 function createModels () {
   var gt = new GhostTrain();
