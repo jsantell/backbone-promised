@@ -12,11 +12,14 @@ describe("Backbone Model", function () {
       }).then(done, done);
     });
 
-    it("Resolves to the model object on success", function (done) {
+    it("Resolves to the model, response and options object on success", function (done) {
       var User = createModels().User;
       var user = new User({ id: 1 });
       user.fetch().then(function (res) {
-        expect(res).to.be.equal(user);
+        expect(res.model).to.be.equal(user);
+        expect(res.options.success).to.be.ok();
+        expect(res.options.error).to.be.ok();
+        expect(res.response.name).to.be.equal("Crono");
       }).then(done, done);
     });
 
@@ -30,13 +33,16 @@ describe("Backbone Model", function () {
       }).then(done, done);
     });
 
-    it("Resolves to model object on failure", function (done) {
+    it("Resolves to model, response and options object on failure", function (done) {
       var User = createModels().User;
       var user = new User({ id: 100 });
       user.fetch().then(function (res) {
         expect(false).to.be.ok();
       }, function (res) {
-        expect(res).to.be.equal(user);
+        expect(res.model).to.be.equal(user);
+        expect(res.options.success).to.be.ok();
+        expect(res.options.error).to.be.ok();
+        expect(res.response).to.be.equal("Internal Server Error");
       }).then(done, done);
     });
   });
@@ -58,7 +64,7 @@ describe("Backbone Model", function () {
       }).then(done, done);
     });
 
-    it("Resolves to the model object on success", function (done) {
+    it("Resolves to the model, response, options object on success", function (done) {
       var User = createModels().User;
       var user = new User({ id: 1 });
       var called = false;
@@ -70,7 +76,10 @@ describe("Backbone Model", function () {
       user.fetch().then(function (res) {
         return user.destroy({ wait: true });
       }).then(function (res) {
-        expect(res).to.be.equal(user);
+        expect(res.model).to.be.equal(user);
+        expect(res.options.success).to.be.ok();
+        expect(res.options.error).to.be.ok();
+        expect(res.response).to.be.equal("OK");
       }).then(done, done);
     });
 
@@ -91,7 +100,7 @@ describe("Backbone Model", function () {
       });
     });
   });
-  
+
   describe("Model#save", function () {
     it("Resolves promise after model is saved, hash-style save", function (done) {
       var User = createModels().User;
@@ -102,7 +111,7 @@ describe("Backbone Model", function () {
         done();
       });
     });
-    
+
     it("Resolves promise after model is saved, key-value save", function (done) {
       var User = createModels().User;
       var user = new User();
