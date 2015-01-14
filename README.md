@@ -1,8 +1,8 @@
 # backbone-promised
 
 [![browser support](https://ci.testling.com/jsantell/backbone-promised.png)](https://ci.testling.com/jsantell/backbone-promised)
-
-[![Build Status](https://travis-ci.org/jsantell/backbone-promised.png)](https://travis-ci.org/jsantell/backbone-promised)
+[![Build Status](http://img.shields.io/travis/jsantell/backbone-promised.svg?style=flat-square)](https://travis-ci.org/jsantell/backbone-promised)
+[![Build Status](http://img.shields.io/npm/v/backbone-promised.svg?style=flat-square)](https://www.npmjs.org/package/backbone-promised)
 
 Wraps up Backbone's sync/XHR functions (`Backbone.Model`'s `save`, `fetch`, `destroy` and `Backbone.Collection`'s `fetch`) as promises. If using the native response from these methods, on success, they return a jQuery XHR promisable, on failure a falsy value. This eliminates the need to check to see if it's thennable. Another advantage is these promises return on `options.success` or `options.error`, rather than just the XHR response, so when the modified promises resolve, you can be sure that the collection or model is also updated by that time.
 
@@ -24,10 +24,10 @@ var when = require("when");
 var Model = Backbone.Model.extend(BackbonePromised(Backbone.model.prototype, when.promise));
 
 var user = new Model({ name: "Dash Rendar" });
-user.save().then(function (model) {
-  console.log("success!");
-}, function (model) {
-  console.error("rejected!");
+user.save().then(({ model, options, response }) => {
+  console.log("success!", response);
+}, ({ model, options, response }) => {
+  console.error("rejected!", response);
 });
 ```
 

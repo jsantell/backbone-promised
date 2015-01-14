@@ -1,7 +1,7 @@
 {
   "name": "backbone-promised",
   "description": "Wraps up Backbone's XHR methods into a consistent promisable API",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "main": "./index.js",
   "dependencies": {
     "underscore": "~1"
