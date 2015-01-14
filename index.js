@@ -20,20 +20,31 @@ function methodExtend (Base, Promise) {
       var error = options.error;
 
       return Promise(function (resolve, reject) {
-        options.success = function () {
-          if (success) success.apply(model, arguments);
-          resolve(model);
-        };
-
-        options.error = function () {
-          if (error) error.apply(model, arguments);
-          reject(model);
-        };
+        options.success = overrideCallback(success, resolve);
+        options.error = overrideCallback(error, reject);
 
         Base[method].apply(model, method === "save" ? [attrs, options] : [options]);
       });
     };
     return agg;
+  };
+}
+
+/**
+ * Takes an optional `callback` and a fulfillment or rejection
+ * `resolver`. Returns a function to be ultimately passed into
+ * Backbone.ajax's XHR options as `error` or `success`. Resolves
+ * upon calling the returned function via `resolver` with
+ * an object representing jQuery's XHR promise signature.
+ *
+ * @param {Function} callback
+ * @param {Function} resolver
+ * @return {Function}
+ */
+function overrideCallback (callback, resolver) {
+  return function (model, response, options) {
+    if (callback) callback.apply(model, arguments);
+    resolver({ model: model, response: response, options: options, collection: model });
   };
 }
 
