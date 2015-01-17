@@ -1,0 +1,24 @@
+{
+  "name": "backbone-promised",
+  "main": "index.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jsantell/backbone-promised",
+  "authors": [
+    "Jordan Santell"
+  ],
+  "description": "Wraps up Backbone's XHR methods into a consistent promisable API",
+  "keywords": [
+    "backbone",
+    "promise",
+    "xhr"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
