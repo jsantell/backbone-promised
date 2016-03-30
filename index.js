@@ -44,7 +44,7 @@ function methodExtend (Base, Promise) {
 function overrideCallback (callback, resolver) {
   return function (model, response, options) {
     if (callback) callback.apply(model, arguments);
-    resolver({ model: model, response: response, options: options, collection: model });
+    resolver({ model: model, response: response, options: options, collection: model.collection || model });
   };
 }
 
